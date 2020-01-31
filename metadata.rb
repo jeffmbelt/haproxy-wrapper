@@ -1,6 +1,6 @@
 name 'haproxy_wrapper'
 maintainer 'me'
-maintainer_email 'me@example.com'
+maintainer_email 'me@mine.com'
 license 'All Rights Reserved'
 description 'Installs/Configures haproxy_wrapper'
 version '0.1.0'
