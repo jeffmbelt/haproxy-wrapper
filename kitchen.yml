@@ -28,7 +28,7 @@ platforms:
 suites:
   - name: default
     provisioner: 
-      policyfile: haproxy-policy.rb
+      policyfile: haproxy-policyfile.rb
     verifier:
       inspec_tests:
         - test/integration/default
