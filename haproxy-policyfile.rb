@@ -13,4 +13,4 @@ default_source :supermarket
 run_list 'haproxy_wrapper::default'
 
 # Specify a custom source for a single cookbook:
-cookbook 'haproxy_wrapper', path: '../cookbooks/hapolicy_wrapper'
+cookbook 'haproxy_wrapper', path: '.'
