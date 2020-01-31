@@ -18,4 +18,4 @@ chef_version '>= 14.0'
 #
 # source_url 'https://github.com/<insert_org_here>/haproxy_wrapper'
 
-depends 'haproxy'
+depends 'haproxy', '~> 3.0.0'
