@@ -32,7 +32,7 @@ pipeline {
     }
     stage('Download Apache Cookbook') {
       steps {
-        git credentialsId: 'git-repo-id', url: 'git@github.com:jeffmbelt/haproxy-wrapper.git'
+        git credentialsId: 'git-repo-id', url: 'git@github.com:jeffmbelt/haproxy_wrapper.git'
       }
     }
     stage('Lint using Cookstyle') {
@@ -65,7 +65,6 @@ pipeline {
             sh 'sudo kitchen destroy'
       }
     }
-/*
     stage('Send Slack Notification') {
       steps {
          slackSend color: 'YELLOW', message: "Mr. Belt: Please approve ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.JOB_URL} | Open>)"
@@ -76,21 +75,19 @@ pipeline {
          input 'Please approve or deny this build'
       }
     }
-*/
     stage('Upload and Converge Nodes') {
       steps {
         withCredentials([zip(credentialsId: 'chef-starter-zip', variable: 'CHEFREPO')]) {
-          sh "rm $WORKSPACE/haproxy-policyfile.lock.json"
-          sh "chef install $WORKSPACE/haproxy-policyfile.rb -c $CHEFREPO/chef-repo/.chef/knife.rb"
-          sh "chef push prod $WORKSPACE/haproxy-policyfile.lock.json -c $CHEFREPO/chef-repo/.chef/knife.rb"
+          sh "rm $WORKSPACE/Policyfile.lock.json"
+          sh "chef install $WORKSPACE/Policyfile.rb -c $CHEFREPO/chef-repo/.chef/knife.rb"
+          sh "chef push prod $WORKSPACE/Policyfile.lock.json -c $CHEFREPO/chef-repo/.chef/knife.rb"
           withCredentials([sshUserPrivateKey(credentialsId: 'agent-key', keyFileVariable: 'agentKey', passphraseVariable: '', usernameVariable: '')]) { 
-           sh "knife ssh 'policy_name:haproxy-server' -x ubuntu -i $agentKey 'sudo chef-client' -c $CHEFREPO/chef-repo/.chef/knife.rb"
+           sh "knife ssh 'policy_name:haproxy_wrapper' -x ubuntu -i $agentKey 'sudo chef-client' -c $CHEFREPO/chef-repo/.chef/knife.rb"
           } 
         }
       }
     }
   }
-/*
   post {
      success {
        slackSend color: 'GREEN', message: "Build $JOB_NAME $BUILD_NUMBER Successful!"
@@ -99,5 +96,4 @@ pipeline {
        slackSend color: 'RED', message: "Build $JOB_NAME $BUILD_NUMBER Failed!"
      }
     }
-*/
 }
