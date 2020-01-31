@@ -1,6 +1,6 @@
 name 'haproxy_wrapper'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+maintainer 'me'
+maintainer_email 'me@example.com'
 license 'All Rights Reserved'
 description 'Installs/Configures haproxy_wrapper'
 version '0.1.0'
@@ -17,3 +17,5 @@ chef_version '>= 14.0'
 # a Supermarket.
 #
 # source_url 'https://github.com/<insert_org_here>/haproxy_wrapper'
+
+depends 'haproxy'
