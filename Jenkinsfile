@@ -32,7 +32,7 @@ pipeline {
     }
     stage('Download Apache Cookbook') {
       steps {
-        git credentialsId: 'git-repo-id', url: 'git@github.com:jeffmbelt/haproxy_wrapper.git'
+        git credentialsId: 'git-repo-id', url: 'git@github.com:jeffmbelt/haproxy-wrapper.git'
       }
     }
     stage('Lint using Cookstyle') {
