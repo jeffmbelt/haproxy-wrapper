@@ -65,6 +65,7 @@ pipeline {
             sh 'sudo kitchen destroy'
       }
     }
+/*
     stage('Send Slack Notification') {
       steps {
          slackSend color: 'YELLOW', message: "Mr. Belt: Please approve ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.JOB_URL} | Open>)"
@@ -75,6 +76,7 @@ pipeline {
          input 'Please approve or deny this build'
       }
     }
+*/
     stage('Upload and Converge Nodes') {
       steps {
         withCredentials([zip(credentialsId: 'chef-starter-zip', variable: 'CHEFREPO')]) {
@@ -88,6 +90,7 @@ pipeline {
       }
     }
   }
+/*
   post {
      success {
        slackSend color: 'GREEN', message: "Build $JOB_NAME $BUILD_NUMBER Successful!"
@@ -96,4 +99,5 @@ pipeline {
        slackSend color: 'RED', message: "Build $JOB_NAME $BUILD_NUMBER Failed!"
      }
     }
+*/
 }
