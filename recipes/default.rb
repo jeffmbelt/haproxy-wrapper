@@ -6,7 +6,7 @@
 
 apt_update
 
-all_web_servers = seach('node', 'policy_name:apache')
+all_web_servers = search('node', 'policy_name:apache')
 
 webserver_pool = []
 
